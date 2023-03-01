@@ -143,7 +143,7 @@ func GetEmailBatch(db *sql.DB) http.Handler {
 		fromJson(req.Body, &queryOptions)
 
 		if queryOptions.Count <= 0 || queryOptions.Page <= 0 {
-			returnErr(w, errors.New("Page and count fields are required and must be >0"), 400)
+			returnErr(w, errors.New("page and count fields are required and must be >0"), 400)
 			return
 		}
 		returnJson(w, func() (interface{}, error) {
