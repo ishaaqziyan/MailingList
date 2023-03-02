@@ -2,6 +2,10 @@ syntax = "proto3";
 package proto;
 
 option go_package = "mailinglist/proto";
+import(
+    google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.3.0 // indirect
+	google.golang.org/protobuf v1.28.1
+)
 
 message EmailEntry {
     int64 id =1;
