@@ -91,7 +91,7 @@ func UpdateEmail(db *sql.DB, entry EmailEntry) error {
 	emails(email,confirmed_at,opt_out)
 	VALUES(?,?,?)
 	ON CONFLICT(email) DO UPDATE SET
-	   confirmed_at=?
+	   confirmed_at=?,
 	   opt_out=?`, entry.Email, t, entry.Optout, t, entry.Optout)
 
 	if err != nil {
