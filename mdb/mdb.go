@@ -68,7 +68,7 @@ func CreateEmail(db *sql.DB, email string) error {
 
 func GetEmail(db *sql.DB, email string) (*EmailEntry, error) {
 	rows, err := db.Query(`
-	SELECT id,email,confrmed_at,opt_out
+	SELECT id,email,confirmed_at,opt_out
 	FROM emails
 	WHERE email =?`, email)
 
@@ -90,7 +90,7 @@ func UpdateEmail(db *sql.DB, entry EmailEntry) error {
 	_, err := db.Exec(`INSERT INTO
 	emails(email,confirmed_at,opt_out)
 	VALUES(?,?,?)
-	ON COMFLICT(email) DO UPDATE SET
+	ON CONFLICT(email) DO UPDATE SET
 	   confirmed_at=?
 	   opt_out=?`, entry.Email, t, entry.Optout, t, entry.Optout)
 
